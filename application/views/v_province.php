@@ -12,8 +12,8 @@
     <select name="province" id="province">
         <option value="0">Select Province</option>
         <?php foreach ($data->result() as $row) : ?>
-        <option value="<?= $row->province_id; ?>">
-            <?= $row->province_name; ?>
+        <option value="<?= $row->id; ?>">
+            <?= $row->name; ?>
         </option>
         <?php endforeach; ?>
     </select>
@@ -38,7 +38,7 @@
                     success: function(array) {
                         var html = '';
                         for (let index = 0; index < array.length; index++) {
-                            html += "<option>" + array[index].city_name + "</option>"
+                            html += "<option>" + array[index].name + "</option>"
 
                         }
                         $('#city').html(html);
