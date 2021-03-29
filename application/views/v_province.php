@@ -7,7 +7,7 @@
 	<title>Tutorial ChainedDropDown | Susantokun</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<link rel="stylesheet" type="text/css" href="<?=base_url('assets')?>/vendor/semantic/semantic.min.css">
+	<link rel="stylesheet" type="text/css" href="<?= base_url('assets') ?>/vendor/semantic/semantic.min.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
@@ -15,7 +15,6 @@
 	.ui.center.header {
 		padding-top: 50px;
 	}
-
 </style>
 
 <body>
@@ -29,7 +28,7 @@
 				<div class="default text">- Select Province -</div>
 				<div class="menu">
 					<?php foreach ($data->result() as $row) : ?>
-					<div class="item" data-value="<?= $row->id ?>"><?= $row->name; ?></div>
+						<div class="item" data-value="<?= $row->id ?>"><?= $row->name; ?></div>
 					<?php endforeach; ?>
 				</div>
 			</div>
@@ -44,14 +43,15 @@
 		</div>
 	</div>
 
-	<script type="text/javascript" src="<?=base_url('assets')?>/vendor/semantic/semantic.min.js"></script>
+	<script type="text/javascript" src="<?= base_url('assets') ?>/vendor/semantic/semantic.min.js"></script>
 	<script>
 		$('#cities')
 			.dropdown();
-		$(document).ready(function () {
-			$('#province').dropdown().change(function () {
+		$(document).ready(function() {
+
+			$('#province').dropdown().change(function() {
 				$('#default_text').text("- Select City -").addClass('default');;
-				
+
 				var id = $(this).find('#selected_province').attr("value");
 				$.ajax({
 					url: "<?= base_url(); ?>/province/get_city",
@@ -60,23 +60,22 @@
 					data: {
 						id: id
 					},
-					success: function (array) {
+					success: function(array) {
 						var html = '';
 						for (let index = 0; index < array.length; index++) {
-							html += '<div class="item" data-value=' + array[index].id + '">'+ array[index].name +'</div>'
+							html += '<div class="item" data-value=' + array[index].id + '">' + array[index].name + '</div>'
 						}
 						$('#city_content').html(html);
-						
-						for (let index = 0; index < array.length; index++) {
-                            html += "<option>" + array[index].name + "</option>"
 
-                        }
-                        $('#city').html(html);
+						for (let index = 0; index < array.length; index++) {
+							html += "<option>" + array[index].name + "</option>"
+
+						}
+						$('#city').html(html);
 					}
 				})
 			})
 		})
-
 	</script>
 </body>
 
